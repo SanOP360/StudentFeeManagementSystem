@@ -13,8 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://student-fee-management-system.vercel.app",
-    credentials: true,
+    origin: "https://student-fee-management-system.vercel.app"
   })
 );
 
