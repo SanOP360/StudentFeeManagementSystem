@@ -32,7 +32,7 @@ export default function EditStudent() {
     const fetchStudent = async () => {
       try {
         const response = await axios.get(
-          `https://student-fee-management-system.vercel.app/api/student/${id}`,
+          `http://localhost:4000/api/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -57,16 +57,12 @@ export default function EditStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://student-fee-management-system.vercel.app/${id}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        }
-      );
-      navigate("/");
+      await axios.put(`http://localhost:4000/api/student/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+      navigate(`/student/${id}`);
     } catch (error) {
       console.error("Error updating student", error);
     }

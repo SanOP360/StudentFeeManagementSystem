@@ -25,7 +25,7 @@ export default function Signup() {
     setError(null);
     try {
       const res = await axios.post(
-        `https://student-fee-management-system.vercel.app/api/auth/signup`,
+        `http://localhost:4000/api/auth/signup`,
         formData
       );
       console.log(res.data);

@@ -18,22 +18,19 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get(
-          "https://student-fee-management-system.vercel.app/api/student",
-          {
-            params: {
-              name: searchName,
-              class: searchClass,
-              rollNumber: searchRollNumber,
-              paymentStatus: searchPaymentStatus,
-              limit: 9,
-              startIndex: (pagination.currentPage - 1) * 9,
-            },
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:4000/api/student", {
+          params: {
+            name: searchName,
+            class: searchClass,
+            rollNumber: searchRollNumber,
+            paymentStatus: searchPaymentStatus,
+            limit: 9,
+            startIndex: (pagination.currentPage - 1) * 9,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
         setStudents(response.data.students);
         setPagination({
           ...pagination,
@@ -139,7 +136,7 @@ export default function Dashboard() {
               <FaFilter className="mr-2" /> Filter
             </button>
           </div>
-          <div className="w-full lg:w-[20%] p-4 lg:items-center">
+          <div className="w-full lg:w-fit p-4 lg:items-center">
             <button
               onClick={handleAddNewStudent}
               className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center justify-center hover:opacity-90 h-full w-full"

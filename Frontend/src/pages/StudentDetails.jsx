@@ -12,7 +12,7 @@ export default function StudentDetails() {
     const fetchStudent = async () => {
       try {
         const response = await axios.get(
-          `https://student-fee-management-system.vercel.app/api/student/${id}`,
+          `http://localhost:4000/api/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -55,6 +55,10 @@ export default function StudentDetails() {
           <p className="mb-3 text-lg">
             <strong className="text-gray-700">Roll Number:</strong>{" "}
             {student.rollNumber}
+          </p>
+          <p className="mb-3 text-lg">
+            <strong className="text-gray-700">Fees:</strong>{" "}
+            {student.fees} Rs
           </p>
           <p className="mb-3 text-lg">
             <strong className="text-gray-700">Payment Status:</strong>{" "}

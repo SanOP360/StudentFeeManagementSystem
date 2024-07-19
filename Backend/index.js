@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "https://school-fee-management-app.vercel.app",
+  origin: "http://localhost:5173",
   optionsSuccessStatus: 200,
 };
 
