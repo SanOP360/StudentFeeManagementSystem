@@ -18,19 +18,22 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/student", {
-          params: {
-            name: searchName,
-            class: searchClass,
-            rollNumber: searchRollNumber,
-            paymentStatus: searchPaymentStatus,
-            limit: 9,
-            startIndex: (pagination.currentPage - 1) * 9,
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-          },
-        });
+        const response = await axios.get(
+          "https://student-fee-management-system.vercel.app/api/student",
+          {
+            params: {
+              name: searchName,
+              class: searchClass,
+              rollNumber: searchRollNumber,
+              paymentStatus: searchPaymentStatus,
+              limit: 9,
+              startIndex: (pagination.currentPage - 1) * 9,
+            },
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        );
         setStudents(response.data.students);
         setPagination({
           ...pagination,

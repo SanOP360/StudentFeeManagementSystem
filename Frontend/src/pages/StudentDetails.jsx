@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "tailwindcss/tailwind.css";
 import InvoiceButton from "../components/InvoiceButton";
 
 export default function StudentDetails() {
@@ -13,7 +12,7 @@ export default function StudentDetails() {
     const fetchStudent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/student/${id}`,
+          `https://student-fee-management-system.vercel.app/api/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,

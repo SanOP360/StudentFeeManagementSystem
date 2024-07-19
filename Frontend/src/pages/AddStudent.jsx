@@ -41,11 +41,15 @@ export default function AddStudent() {
         image,
       };
 
-      await axios.post("http://localhost:4000/api/student", formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
+      await axios.post(
+        "https://student-fee-management-system.vercel.app/api/student",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
 
       navigate("/dashboard");
     } catch (error) {

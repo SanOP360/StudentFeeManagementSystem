@@ -1,6 +1,6 @@
 import Signup from "./pages/Signup";
 import SignIn from "./pages/Signin";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboards";
 import EditStudent from "./pages/EditSutdent";
 import StudentDetails from "./pages/StudentDetails";

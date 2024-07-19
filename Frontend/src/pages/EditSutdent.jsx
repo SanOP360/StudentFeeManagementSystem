@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "tailwindcss/tailwind.css";
+import {
+  FaUser,
+  FaClipboard,
+  FaDollarSign,
+  FaAddressCard,
+  FaPhone,
+  FaVenusMars,
+  FaChalkboardTeacher,
+  FaImage,
+} from "react-icons/fa";
 
 export default function EditStudent() {
   const { id } = useParams();
@@ -23,7 +32,7 @@ export default function EditStudent() {
     const fetchStudent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/student/${id}`,
+          `https://student-fee-management-system.vercel.app/api/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -48,12 +57,16 @@ export default function EditStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:4000/api/student/${id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-      navigate("/dashboard");
+      await axios.put(
+        `https://student-fee-management-system.vercel.app/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+      navigate("/");
     } catch (error) {
       console.error("Error updating student", error);
     }
@@ -64,124 +77,142 @@ export default function EditStudent() {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Edit Student</h2>
+    <div className="min-h-screen flex items-center justify-center md:py-4 bg-gray-300">
       <form
-        className="bg-white shadow-md rounded-lg p-4"
         onSubmit={handleSubmit}
+        className="bg-white p-8 rounded-lg shadow-md w-full md:w-[50%]"
       >
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Name</label>
+        <h2 className="text-2xl font-bold mb-6 text-center">Edit Student</h2>
+        <div className="mb-4 relative">
+          <FaUser className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="name"
+            placeholder="Name"
             value={formData.name}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Class</label>
-          <input
-            type="number"
-            name="class"
-            value={formData.class}
-            onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">
-            Roll Number
-          </label>
+        <div className="mb-4 relative">
+          <FaClipboard className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="rollNumber"
+            placeholder="Roll Number"
             value={formData.rollNumber}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">
-            Payment Status
-          </label>
+        <div className="mb-4 relative">
+          <FaDollarSign className="absolute top-3 left-3 text-gray-400" />
+          <input
+            type="number"
+            name="fees"
+            placeholder="Fees"
+            value={formData.fees}
+            onChange={handleChange}
+            className="p-2 pl-10 rounded-lg border w-full"
+            required
+          />
+        </div>
+        <div className="mb-4 relative">
+          <FaAddressCard className="absolute top-3 left-3 text-gray-400" />
           <select
             name="paymentStatus"
             value={formData.paymentStatus}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
             required
           >
             <option value="Paid">Paid</option>
             <option value="Unpaid">Unpaid</option>
           </select>
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Address</label>
+        <div className="mb-4 relative">
+          <FaAddressCard className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="address"
+            placeholder="Address"
             value={formData.address}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">
-            Parent Name
-          </label>
+        <div className="mb-4 relative">
+          <FaUser className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="parentName"
+            placeholder="Parent Name"
             value={formData.parentName}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">
-            Parent Contact
-          </label>
+        <div className="mb-4 relative">
+          <FaPhone className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="parentContact"
+            placeholder="Parent Contact"
             value={formData.parentContact}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Gender</label>
-          <input
-            type="text"
+        <div className="mb-4 relative">
+          <FaVenusMars className="absolute top-3 left-3 text-gray-400" />
+          <select
             name="gender"
             value={formData.gender}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
+          >
+            <option className="p-2" value="male">
+              Male
+            </option>
+            <option className="p-2" value="female">
+              Female
+            </option>
+            <option className="p-2" value="other">
+              Other
+            </option>
+          </select>
+        </div>
+        <div className="mb-4 relative">
+          <FaChalkboardTeacher className="absolute top-3 left-3 text-gray-400" />
+          <input
+            type="number"
+            name="class"
+            placeholder="Class"
+            value={formData.class}
+            onChange={handleChange}
+            className="p-2 pl-10 rounded-lg border w-full"
+            required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Image</label>
+        <div className="mb-4 relative">
+          <FaImage className="absolute top-3 left-3 text-gray-400" />
           <input
             type="text"
             name="image"
+            placeholder="Image URL (Google Drive link)"
             value={formData.image}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="p-2 pl-10 rounded-lg border w-full"
           />
         </div>
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            Update
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 w-full"
+        >
+          Update
+        </button>
       </form>
     </div>
   );
