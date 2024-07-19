@@ -4,8 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const authRouter = require("./routes/auth.route");
-const studentRouter=require("./routes/student.route")
-
+const studentRouter = require("./routes/student.route");
 
 dotenv.config();
 
@@ -17,8 +16,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
+
 
 mongoose
   .connect(process.env.MONGO)
@@ -31,7 +30,7 @@ mongoose
 
 
 app.use("/api/auth", authRouter);
-app.use("/api/student",studentRouter);
+app.use("/api/student", studentRouter);
 
 
 app.use((err, req, res, next) => {
@@ -43,6 +42,7 @@ app.use((err, req, res, next) => {
     message,
   });
 });
+
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
