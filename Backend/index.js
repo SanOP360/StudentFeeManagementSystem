@@ -12,9 +12,7 @@ dotenv.config();
 const app = express();
 
 app.use(
-  cors({
-    origin: "https://school-fee-management-app.vercel.app",
-  })
+  cors()
 );
 
 app.use(express.json());
