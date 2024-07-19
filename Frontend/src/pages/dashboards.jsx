@@ -102,26 +102,26 @@ export default function Dashboard() {
             <input
               type="text"
               placeholder="Search by Name"
-              className="p-2 md:ml-4 lg:ml-0 rounded-lg border w-full md:w-22"
+              className="p-2 md:ml-4 lg:ml-0  rounded-lg border md:w-22"
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />
             <input
               type="text"
               placeholder="Search by Class"
-              className="p-2 rounded-lg border w-full md:w-22"
+              className="p-2 rounded-lg border w-90 md:w-22 md:mr-4"
               value={searchClass}
               onChange={(e) => setSearchClass(e.target.value)}
             />
             <input
               type="text"
               placeholder="Search by Roll Number"
-              className="p-2 rounded-lg border w-full md:w-22"
+              className="p-2 rounded-lg border w-90 md:w-22 md:mr-4 "
               value={searchRollNumber}
               onChange={(e) => setSearchRollNumber(e.target.value)}
             />
             <select
-              className="p-2 rounded-lg border w-full md:w-22"
+              className="p-2 rounded-lg border w-90 md:w-22 md:mr-4"
               value={searchPaymentStatus}
               onChange={(e) => setSearchPaymentStatus(e.target.value)}
             >
@@ -136,7 +136,7 @@ export default function Dashboard() {
               <FaFilter className="mr-2" /> Filter
             </button>
           </div>
-          <div className="w-full lg:w-[60%] p-4 ">
+          <div className="w-full lg:w-[20%] p-4 lg:items-center">
             <button
               onClick={handleAddNewStudent}
               className="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center justify-center hover:opacity-90 h-full w-full"
